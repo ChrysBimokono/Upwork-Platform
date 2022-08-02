@@ -1,3 +1,9 @@
+import TopNav from "./TopNav";
+
 export default function JobBoard() {
-  return <>board</>;
+  return (
+    <>
+      <TopNav />
+    </>
+  );
 }
