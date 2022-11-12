@@ -11,10 +11,10 @@ export default function App() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-  const [allJob, setAllJob] = useState([]);
+  const [allJobs, setAllJobs] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const url = "https://remotive.com/api/remote-jobs?category=software-dev";
+  const url = "https://remotive.com/api/remote-jobs?limit=5";
   useEffect(() => {
     const loadJob = async () => {
       //we will show the loading symbol
@@ -23,7 +23,7 @@ export default function App() {
 
       const response = await axios.get(url);
       //after getting data store it
-      setAllJob(response.data.jobs);
+      setAllJobs(response.data.jobs);
       // console.log(setAllJob(response.data));
       //close the loading;
       setLoading(false);
@@ -47,7 +47,7 @@ export default function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/jobs" element={<JobBoard />} />
+          <Route path="/jobs" element={<JobBoard allJobs={allJobs} />} />
           <Route path="/job/:id" element={<JobDetail />} />
         </Routes>
       )}
